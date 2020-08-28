@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -920,8 +920,8 @@ GameObject:
   m_Component:
   - component: {fileID: 649518349}
   - component: {fileID: 649518350}
-  m_Layer: 0
-  m_Name: Player PC Controls
+  m_Layer: 8
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -958,7 +958,7 @@ MonoBehaviour:
   playerModel: {fileID: 1800398211}
   playerCamera: {fileID: 519420028}
   moveSpeed: 0.01
-  jumpForce: 500
+  jumpForce: 1000
 --- !u!1 &655826214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1574,7 @@ GameObject:
   - component: {fileID: 1800398214}
   - component: {fileID: 1800398216}
   - component: {fileID: 1800398213}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player Model Placeholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

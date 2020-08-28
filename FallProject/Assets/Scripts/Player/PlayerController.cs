@@ -14,6 +14,14 @@ public class PlayerController : MonoBehaviour
 	private float moveSpeed = 0.01f;
 	[SerializeField]
 	private float jumpForce = 100.0f;
+	
+	private int layerMask = 1 << 8;
+	private RaycastHit hit;
+	private void Start()
+	{
+		layerMask = ~layerMask;
+	}
+	 
 	private void playerMovement()
 	{
 		if (Input.GetKey("d"))
@@ -28,16 +36,23 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetKeyDown("space"))
 		{
-			playerModel.GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
+			Physics.Raycast(playerModel.transform.position, playerModel.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity, layerMask);
+			Debug.DrawRay(playerModel.transform.position, playerModel.transform.TransformDirection(Vector3.down) * hit.distance, Color.red);
+
+			if (hit.distance < 1)
+			{
+				playerModel.GetComponent<Rigidbody>().AddForce(transform.up * jumpForce);
+			}
+			
 		}
 	}
 
 	private void cameraFollow()
 	{
-		playerCamera.transform.position = new Vector3(playerModel.transform.position.x, playerModel.transform.position.y, playerModel.transform.position.z - 20);
+		playerCamera.transform.position = Vector3.Slerp(playerCamera.transform.position, new Vector3(playerModel.transform.position.x, playerModel.transform.position.y, playerModel.transform.position.z - 20), 30 * Time.deltaTime);
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		playerMovement();
 		cameraFollow();
